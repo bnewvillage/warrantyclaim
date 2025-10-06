@@ -124,6 +124,6 @@ export function renderBrandsDropdown(brands, parentElement, position = "afterbeg
 }
 
 export function brandDropdownTemplateFn(brand){
-    return `<option value="">${brand.name}</option>`;
+    return `<option value="${brand.value}">${brand.name}</option>`;
 }
 
