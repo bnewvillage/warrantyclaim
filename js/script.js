@@ -1,6 +1,7 @@
 import { brandDropdownTemplateFn, brands, renderBrandsDropdown } from "./BrandsDetails.mjs";
-const parentDropdown = document.querySelector("#brand");
+import { callWorkerAPI } from "./utils.mjs";
 
+const parentDropdown = document.querySelector("#brand");
 document.addEventListener("DOMContentLoaded", () => {
       const form = document.getElementById("claim-form");
       const submitBtn = document.getElementById("submitBtn");
@@ -95,4 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 renderBrandsDropdown(brands,parentDropdown,"afterbegin");
-
+callWorkerAPI().then(data =>{
+  console.log(data);
+});
