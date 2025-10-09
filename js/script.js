@@ -1,5 +1,5 @@
-import { brandDropdownTemplateFn, brands, renderBrandsDropdown } from "./BrandsDetails.mjs";
-import { callWorkerAPI } from "./utils.mjs";
+import { brands, renderBrandsDropdown } from "./BrandsDetails.mjs";
+import { callWorkerAPI, getDateTime } from "./utils.mjs";
 
 const parentDropdown = document.querySelector("#brand");
 document.addEventListener("DOMContentLoaded", () => {
@@ -96,6 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 renderBrandsDropdown(brands,parentDropdown,"afterbegin");
-callWorkerAPI().then(data =>{
-  console.log(data);
-});
+
+console.log(await getDateTime());
+
