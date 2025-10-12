@@ -1,86 +1,130 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Warranty Claim Form</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="js/script.js" type="module"></script>
-    </head>
-    <body>
-    <header>
-        <h1>Warranty Claim Form</h1>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
 
-    <main>
-        <section class="panel">
-        <h2>Submit a Claim</h2>
-            
-        <form id="claim-form" novalidate>
-            <label for="brand">Brand</label>
-            <select id="brand" name="brand" required>
-            <option value="">-- Choose a brand --</option>
-            </select>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Warranty Claim Form</title>
 
-            <label for="issue">Issue description</label>
-            <textarea id="issue" name="issue" rows="4" required placeholder="Describe the defect..."></textarea>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/script.js" type="module"></script>
+</head>
 
-            <label for="staff">Staff name</label>
-            <input id="staff" name="staff" type="text" placeholder="Your name" required />
+<body>
+  <header>
+    <h1>Warranty Claim Form</h1>
+  </header>
 
-            <div class="form-actions">
-            <button type="submit" id="submitBtn" class="btn primary">Submit</button>
-            <button type="button" id="clearBtn" class="btn secondary">Clear</button>
-            </div>
-        </form>
-        </section>
+  <main>
+    <section class="panel">
+      <h2>Submit a Claim</h2>
 
-        <section class="panel">
-        <h2>Recent Claims (demo)</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Claim ID</th>
-                <th>Brand</th>
-                <th>Issue</th>
-                <th>Staff</th>
-                <th>Status</th>
-                <th>Timestamp</th>
-            </tr>
-            </thead>
-            <tbody id="claim-list"></tbody>
-        </table>
-        </section>
-    </main>
+      <!-- Removed 'novalidate' so built-in validation runs -->
+      <form id="claim-form">
+        <!-- Sales Associate -->
+        <label for="staff">
+          Sales Associate:<br>
+          <input id="staff" name="staff" type="text" placeholder="Your name" required />
+        </label>
 
-    <!-- Clear Confirmation Modal -->
-    <div id="clearModal" class="modal hidden">
-        <div class="modal-content">
-        <p>Are you sure you want to clear the form?</p>
-        <div class="modal-actions">
-            <button id="confirmClear" class="btn primary">Yes, clear</button>
-            <button id="cancelClear" class="btn secondary">No</button>
+        <!-- Brand -->
+        <label for="brand">
+          Brand:<br>
+          <select id="brand" name="brand" required>
+            <option value="" disabled selected>Select a brand</option>
+          </select>
+        </label>
+
+        <!-- Warranty Claimant -->
+        <fieldset>
+          <legend>Warranty Claimant</legend>
+
+          <label>
+            <input type="radio" name="claimant" value="UAE Customer" required />
+            UAE Customer
+          </label>
+
+          <label>
+            <input type="radio" name="claimant" value="UAE Stock" required />
+            UAE Stock
+          </label>
+
+          <label>
+            <input type="radio" name="claimant" value="KSA Customer" required />
+            KSA Customer
+          </label>
+
+          <label>
+            <input type="radio" name="claimant" value="KSA Stock" required />
+            KSA Stock
+          </label>
+
+          <label>
+            <input type="radio" name="claimant" value="Qatar Customer" required />
+            Qatar Customer
+          </label>
+
+          <label>
+            <input type="radio" name="claimant" value="Qatar Stock" required />
+            Qatar Stock
+          </label>
+        </fieldset>
+
+        <!-- SKU -->
+        <label for="sku">
+          SKU:<br>
+          <input type="text" name="sku" id="sku" placeholder="Enter item part number" required />
+        </label>
+
+        <!-- Dates -->
+        <label for="datePurchased">
+          Date Purchased:<br>
+          <input type="date" id="datePurchased" name="datePurchased" required />
+        </label>
+
+        <label for="dateReturned">
+          Date Returned:<br>
+          <input type="date" id="dateReturned" name="dateReturned" required />
+        </label>
+
+        <!-- Issue Description -->
+        <label for="issue">Issue Description:</label>
+        <textarea id="issue" name="issue" rows="4" required placeholder="Describe the defect..."></textarea>
+
+        <!-- Form Buttons -->
+        <div class="form-actions">
+          <button type="submit" id="submitBtn" class="btn primary">Submit</button>
+          <button type="button" id="clearBtn" class="btn secondary">Clear</button>
         </div>
-        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- Clear Confirmation Modal -->
+  <div id="clearModal" class="modal hidden">
+    <div class="modal-content">
+      <p>Are you sure you want to clear the form?</p>
+      <div class="modal-actions">
+        <button id="confirmClear" class="btn primary">Yes, clear</button>
+        <button id="cancelClear" class="btn secondary">No</button>
+      </div>
     </div>
+  </div>
 
-    <!-- Brand Reminder Modal -->
-    <div id="brandModal" class="modal hidden">
-        <div class="modal-content">
-        <p id="brandMessage"></p>
-        <div class="modal-actions">
-            <button id="continueSubmit" class="btn primary">Continue</button>
-            <button id="cancelSubmit" class="btn secondary">Cancel</button>
-        </div>
-        </div>
+  <!-- Brand Reminder Modal -->
+  <div id="brandModal" class="modal hidden">
+    <div class="modal-content">
+      <p id="brandMessage"></p>
+      <div class="modal-actions">
+        <button id="continueSubmit" class="btn primary">Continue</button>
+        <button id="cancelSubmit" class="btn secondary">Cancel</button>
+      </div>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2025 Oldtimer Motorcycles | Warranty Department</p>
-    </footer>
+  <footer>
+    <p>&copy; 2025 Oldtimer Motorcycles | Warranty Department</p>
+  </footer>
+</body>
 
-    <script>
-        
-    </script>
-    </body>
-    </html>
+</html>

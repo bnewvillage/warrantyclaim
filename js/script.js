@@ -20,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const continueSubmit = document.getElementById("continueSubmit");
       const cancelSubmit = document.getElementById("cancelSubmit");
 
+      renderBrandsDropdown(brands,parentDropdown,"beforeend");
+
       const brandSelect = document.getElementById("brand");
 
       const brandReminder = {
@@ -44,17 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("Sheets resp:", resp);
         data.timestamp = new Date().toLocaleString();
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${Date.now().toString(36).toUpperCase()}</td>
-          <td>${data.brand}</td>
-          <td>${data.issue}</td>
-          <td>${data.staff}</td>
-          <td>Submitted</td>
-          <td>${data.timestamp}</td>
-        `;
-        claimList.prepend(tr);
 
         form.reset();
         closeModal(brandModal);
@@ -104,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       cancelClear.addEventListener("click", () => closeModal(clearModal));
     });
 
-renderBrandsDropdown(brands,parentDropdown,"afterbegin");
+
 
 console.log(await callWorkerAPI("/time"));
 
