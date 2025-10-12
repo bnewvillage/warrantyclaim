@@ -1,18 +1,16 @@
-export async function callWorkerAPI(payload = {}) {
-  const res = await fetch("https://uae.oldtimerwarranties.workers.dev/time", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-    // mode: "cors" // (default for cross-origin fetch in browsers)
-  });
+const BASE = "https://uae.oldtimerwarranties.workers.dev";
+
+export async function callWorkerAPI(path, { method = "GET", data } = {}) {
+  const options = { method };
+  if (data !== undefined) {
+    options.headers = { "Content-Type": "application/json" };
+    options.body = JSON.stringify(data);
+  }
+  const res = await fetch(`${BASE}${path}`, options);
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 
-export async function getDateTime(){
-  const response = await fetch("https://uae.oldtimerwarranties.workers.dev/time");
-  if (!response.ok){
-    throw new Error(`HTTP ${response.status}`);
-  }
-  return await response.json();
+export async function submitForm({brand, issue, staff}){
+  return callWorkerAPI("/claim", {method: "POST", data: {brand, issue, staff} });
 }

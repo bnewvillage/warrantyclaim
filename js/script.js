@@ -1,5 +1,8 @@
-import { brands, renderBrandsDropdown } from "./BrandsDetails.mjs";
-import { callWorkerAPI, getDateTime } from "./utils.mjs";
+import { renderBrandsDropdown } from "./BrandsDetails.mjs";
+import { callWorkerAPI , submitForm} from "./utils.mjs";
+import { brands } from "../public/brandObjectDetails/brands.mjs"
+import brandFields from "../public/brandObjectDetails/brandFields.mjs";
+
 
 const parentDropdown = document.querySelector("#brand");
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const brandSelect = document.getElementById("brand");
 
-      const specialBrands = {
-        brandB: "Reminder: Brand B requires a serial number and 3 photos to process a claim."
+      const brandReminder = {
+        ALPINESTARS : "Typical resolution is only 50% of cost. If it's a minor damage, ask the customer if they would be willing to keep the slightly damage and recieve 50% of their purchase price. Or if they would like to have the full item replaced instead (we keep the damaged)."
       };
 
       function wiggleFields(fields) {
@@ -31,9 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
 
-      function submitClaim() {
+      async function submitClaim() {
         const fd = new FormData(form);
         const data = Object.fromEntries(fd.entries());
+        const brand = data.brand;
+        const issue = data.issue;
+        const staff = data.staff;
+        const resp = await submitForm({ brand, issue, staff });
+
+        console.log("Sheets resp:", resp);
         data.timestamp = new Date().toLocaleString();
 
         const tr = document.createElement("tr");
@@ -75,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const brand = brandSelect.value;
-        if (specialBrands[brand]) {
-          brandMessageEl.textContent = specialBrands[brand];
+        if (brandReminder[brand]) {
+          brandMessageEl.textContent = brandReminder[brand];
           showModal(brandModal);
           return;
         }
@@ -97,5 +106,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 renderBrandsDropdown(brands,parentDropdown,"afterbegin");
 
-console.log(await getDateTime());
+console.log(await callWorkerAPI("/time"));
 
