@@ -39,6 +39,10 @@ export const brandForms = {
       <span class="label-text">Serial Number</span>
       <input type="text" name="serialNumber" required />
     </label>
+    <label class="form-field">
+      <span class="label-text">Bike Model/Year</span>
+      <input type="text" name="bikeModelYear" required />
+    </label>
   `,
 
   SENA: `
@@ -65,7 +69,15 @@ export const brandForms = {
       <input type="text" name="batchNumber" required />
     </label>
   `,
+  "HEX INNOVATE":`
+  <p class="note">
+      <strong>Hex Serial Numbers is Required</strong>
+    </p>
+    <label class="form-field">
+      <span class="label-text">Serial Number</span>
+      <input type="text" name="serialNumber" required />
+    </label>
+  `
 };
 
 export default brandForms;
-    
