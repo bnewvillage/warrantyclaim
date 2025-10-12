@@ -1,4 +1,4 @@
-import { renderBrandsDropdown } from "./BrandsDetails.mjs";
+import { renderBrandsDropdown, renderBrandSpecificFields } from "./BrandsDetails.mjs";
 import { callWorkerAPI , submitForm} from "./utils.mjs";
 import { brands } from "../public/brandObjectDetails/brands.mjs"
 import brandFields from "../public/brandObjectDetails/brandFields.mjs";
@@ -22,7 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       renderBrandsDropdown(brands,parentDropdown,"beforeend");
 
-      const brandSelect = document.getElementById("brand");
+      let brandSelect = document.getElementById("brand");
+
+      brandSelect.addEventListener("change", () =>
+  renderBrandSpecificFields(brandSelect.value, brandFields)
+);
 
       const brandReminder = {
         ALPINESTARS : "Typical resolution is only 50% of cost. If it's a minor damage, ask the customer if they would be willing to keep the slightly damage and recieve 50% of their purchase price. Or if they would like to have the full item replaced instead (we keep the damaged)."
@@ -98,4 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 console.log(await callWorkerAPI("/time"));
+brandSelected.addEventListener("change", () =>
+  renderBrandSpecificFields(brandSelected, brandFields)
+);
+
 

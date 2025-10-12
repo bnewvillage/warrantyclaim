@@ -8,7 +8,9 @@ export function brandDropdownTemplateFn(brand){
 }
 
 export function renderBrandSpecificFields(brand, brandFields){
+    const parentObject = document.querySelector("#brandSpecific");
+    parentObject.innerHTML = "";
     if (brandFields[brand]){
-        then
-    }
+        parentObject.insertAdjacentHTML("beforeend", brandFields[brand])
+    };
 }

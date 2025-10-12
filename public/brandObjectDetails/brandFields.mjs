@@ -1,123 +1,71 @@
-export const brandFields = {
-  ALPINESTARS: {
-    fields: [
-      {
-        name: "endUserPurchaseDate",
-        label: "End-User Purchase Date",
-        type: "date",
-      },
-      {
-        name: "endUserReturnDate",
-        label: "End-User Return Date / Warranty Claim Date",
-        type: "date",
-      },
-    ],
-  },
-  KLIM: {
-    fields: [
-      {
-        name: "instruction",
-        label: "Klim PO number is Required",
-        type: "note",
-        note: "*If approved, item required to be destroyed.",
-      },
-      { name: "poNumber", label: "PO Number", type: "text" },
-    ],
-  },
-  LEATT: {
-    fields: [
-      {
-        name: "instruction",
-        label: "Leatt PO number is Required",
-        type: "note",
-        note: "*If approved, item required to be destroyed.",
-      },
-      { name: "poNumber", label: "PO Number", type: "text" },
-      {
-        name: "endUserPurchaseDate",
-        label: "End-User Purchase Date",
-        type: "date",
-      },
-      {
-        name: "endUserReturnDate",
-        label: "End-User Return Date / Warranty Claim Date",
-        type: "date",
-      },
-    ],
-  },
-  "DENALI ELECTRONICS": {
-    fields: [
-      {
-        name: "instruction",
-        label: "Denali Serial Number is Required",
-        type: "note",
-      },
-      { name: "serialNumber", label: "Serial Number", type: "text" },
-    ],
-  },
-  AKRAPOVIC: {
-    fields: [
-      {
-        name: "instruction",
-        label: "Akrapovic Serial Number is Required",
-        type: "note",
-      },
-      { name: "serialNumber", label: "Serial Number", type: "text" },
-      {
-        name: "endUserPurchaseDate",
-        label: "End-User Purchase Date",
-        type: "date",
-      },
-      {
-        name: "endUserReturnDate",
-        label: "End-User Return Date / Warranty Claim Date",
-        type: "date",
-      },
-    ],
-  },
-  SENA: {
-    fields: [
-      {
-        name: "instruction",
-        label: "Sena Serial Number and FBD Numbers are Required",
-        type: "note",
-        note: "These are needed to process the claim",
-      },
-      { name: "serialNumber", label: "Serial Number", type: "text" },
-      { name: "batchNumber", label: "Batch Number (BD / FBD)", type: "text" },
-      {
-        name: "endUserPurchaseDate",
-        label: "End-User Purchase Date",
-        type: "date",
-      },
-      {
-        name: "endUserReturnDate",
-        label: "End-User Return Date / Warranty Claim Date",
-        type: "date",
-      },
-    ],
-  },
-  "LONE RIDER": {
-    fields: [
-      {
-        name: "instruction",
-        label: "Lone Rider Batch Number (BN) is Required",
-        type: "note",
-      },
-      {
-        name: "endUserPurchaseDate",
-        label: "End-User Purchase Date",
-        type: "date",
-      },
-      { name: "batchNumber", label: "Batch Number (BD / FBD)", type: "text" },
-      ,
-      {
-        name: "endUserReturnDate",
-        label: "End-User Return Date / Warranty Claim Date",
-        type: "date",
-      },
-    ],
-  },
+export const brandForms = {
+  KLIM: `
+    <p class="note">
+      <strong>Klim PO number is Required</strong><br />
+      <small>*If approved, item required to be destroyed.</small>
+    </p>
+    <label class="form-field">
+      <span class="label-text">PO Number</span>
+      <input type="text" name="poNumber" required />
+    </label>
+  `,
+
+  LEATT: `
+    <p class="note">
+      <strong>Leatt PO number is Required</strong><br />
+      <small>*If approved, item required to be destroyed.</small>
+    </p>
+    <label class="form-field">
+      <span class="label-text">PO Number</span>
+      <input type="text" name="poNumber" required />
+    </label>
+  `,
+
+  "DENALI ELECTRONICS": `
+    <p class="note">
+      <strong>Denali Serial Number is Required</strong>
+    </p>
+    <label class="form-field">
+      <span class="label-text">Serial Number</span>
+      <input type="text" name="serialNumber" required />
+    </label>
+  `,
+
+  AKRAPOVIC: `
+    <p class="note">
+      <strong>Akrapovic Serial Number is Required</strong>
+    </p>
+    <label class="form-field">
+      <span class="label-text">Serial Number</span>
+      <input type="text" name="serialNumber" required />
+    </label>
+  `,
+
+  SENA: `
+    <p class="note">
+      <strong>Sena Serial Number and FBD Numbers are Required</strong><br />
+      <small>These are needed to process the claim.</small>
+    </p>
+    <label class="form-field">
+      <span class="label-text">Serial Number</span>
+      <input type="text" name="serialNumber" required />
+    </label>
+    <label class="form-field">
+      <span class="label-text">Batch Number (BD / FBD)</span>
+      <input type="text" name="batchNumber" required />
+    </label>
+  `,
+
+  "LONE RIDER": `
+    <p class="note">
+      <strong>Lone Rider Batch Number (BN) is Required</strong>
+    </p>
+    <label class="form-field">
+      <span class="label-text">Batch Number (BD / FBD)</span>
+      <input type="text" name="batchNumber" required />
+    </label>
+  `,
 };
 
-export default brandFields;
+export default brandForms;
+    

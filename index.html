@@ -19,7 +19,6 @@
     <section class="panel">
       <h2>Submit a Claim</h2>
 
-      <!-- Removed 'novalidate' so built-in validation runs -->
       <form id="claim-form">
         <!-- Sales Associate -->
         <label for="staff">
@@ -86,6 +85,11 @@
           Date Returned:<br>
           <input type="date" id="dateReturned" name="dateReturned" required />
         </label>
+
+        <fieldset id="brandSpecific">
+            <legend>Brand Requirement</legend>
+
+        </fieldset>
 
         <!-- Issue Description -->
         <label for="issue">Issue Description:</label>
