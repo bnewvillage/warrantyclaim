@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
     closeModal(brandModal);
     alert("Claim submitted!");
+    window.location.href = "https://docs.google.com/spreadsheets/d/1MDK0M72c_H3ix8ASGcsEvUnPhVOZdA5PEfz3HIKVX0k/edit?gid=0#gid=0";
   }
 
   function showModal(modal) {
