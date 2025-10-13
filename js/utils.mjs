@@ -41,15 +41,18 @@ export async function mountHolidayStrip() {
 
   // fetch once year
   const year = new Date().getFullYear();
-  let holidays = [];
-  try {
-    const { ok, holidays: data = [] } = await callWorkerAPI(`/holidays?year=${year}`);
-    if (!ok) throw new Error("holidays fetch failed");
-    holidays = Array.isArray(data) ? data : [];
-  } catch (e) {
-    // on't show the widget
-    return;
-  }
+let holidays = [];
+
+try {
+  const { ok, holidays: data = [] } = await callWorkerAPI(`/holidays?year=${year}`);
+  if (!ok) throw new Error("holidays fetch failed");
+  holidays = Array.isArray(data) ? data : [];
+} catch (e) {
+  console.error("Error fetching holidays:", e);
+  holidays = []; 
+  return holidays;
+}
+
 
   //upcoming ones (today or later)
   const today = new Date();

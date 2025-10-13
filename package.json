@@ -1,0 +1,27 @@
+{
+  "name": "warrantyclaim",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js,.mjs",
+    "lint:fix": "eslint . --ext .js,.mjs --fix"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bnewvillage/warrantyClaim.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/bnewvillage/warrantyClaim/issues"
+  },
+  "homepage": "https://github.com/bnewvillage/warrantyClaim#readme",
+  "dependencies": {
+    "eslint": "^9.37.0"
+  }
+}

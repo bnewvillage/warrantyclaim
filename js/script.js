@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelSubmit = document.getElementById("cancelSubmit");
 
   renderBrandsDropdown(brands, parentDropdown, "beforeend");
-  let brandSelect = document.getElementById("brand");
+  const brandSelect = document.getElementById("brand");
 
   callWorkerAPI("/time").then(console.log);
   mountHolidayStrip();
@@ -45,17 +45,32 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function submitClaim() {
-    const fd = new FormData(form);
-    const data = Object.fromEntries(fd.entries());
-    const resp = await submitForm(data);
-    console.log(resp);
+    try {
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
 
-    data.timestamp = callWorkerAPI("/time");
+      const resp = await submitForm(data);
+      console.log("Form submission response:", resp);
 
-    form.reset();
-    closeModal(brandModal);
-    alert("Claim submitted!");
-    window.location.href = "https://docs.google.com/spreadsheets/d/1MDK0M72c_H3ix8ASGcsEvUnPhVOZdA5PEfz3HIKVX0k/edit?gid=0#gid=0";
+      // attach a timestamp from your worker
+      try {
+        data.timestamp = await callWorkerAPI("/time");
+      } catch (err) {
+        console.warn("Could not fetch timestamp:", err);
+        data.timestamp = new Date().toISOString();
+      }
+
+      form.reset();
+      closeModal(brandModal);
+      alert("Claim submitted!");
+      window.location.href =
+        "https://docs.google.com/spreadsheets/d/1MDK0M72c_H3ix8ASGcsEvUnPhVOZdA5PEfz3HIKVX0k/edit?gid=0#gid=0";
+    } catch (e) {
+      console.error("Error submitting claim:", e);
+      alert(
+        "An error occurred while submitting your claim. Please try again later or contact support."
+      );
+    }
   }
 
   function showModal(modal) {
