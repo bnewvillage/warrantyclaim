@@ -9,6 +9,8 @@ import brandFields from "../public/brandObjectDetails/brandFields.mjs";
 const parentDropdown = document.querySelector("#brand");
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("claim-form");
+  const fields = [...form.querySelectorAll("input, textarea, select")];
+
   const submitBtn = document.getElementById("submitBtn");
   const clearBtn = document.getElementById("clearBtn");
 
@@ -20,11 +22,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const brandMessageEl = document.getElementById("brandMessage");
   const continueSubmit = document.getElementById("continueSubmit");
   const cancelSubmit = document.getElementById("cancelSubmit");
+  
 
   renderBrandsDropdown(brands, parentDropdown, "beforeend");
   const brandSelect = document.getElementById("brand");
 
   mountHolidayStrip();
+
+  fields.forEach((field) => {
+    const saved = sessionStorage.getItem(field.name || field.id);
+    if (saved){
+      field.value = saved;
+    }
+
+    field.addEventListener("input", ()=>{
+      const key = field.name || field.id;
+      sessionStorage.setItem(key, field.value);
+    });
+  });
 
   brandSelect.addEventListener("change", () =>
     renderBrandSpecificFields(brandSelect.value, brandFields)
@@ -61,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
       closeModal(brandModal);
       alert("Claim submitted!");
+      sessionStorage.clear();
       window.location.href =
         "https://docs.google.com/spreadsheets/d/1MDK0M72c_H3ix8ASGcsEvUnPhVOZdA5PEfz3HIKVX0k/edit?gid=0#gid=0";
     } catch (e) {
@@ -84,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
   submitBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const fields = [...form.querySelectorAll("input, textarea, select")];
     const invalidFields = fields.filter((f) => !f.checkValidity());
 
     if (invalidFields.length) {

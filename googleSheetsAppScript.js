@@ -20,7 +20,7 @@ function doPost(e) {
     const datePurchased = parseAsDate(data.datePurchased);
     const dateReturned  = parseAsDate(data.dateReturned);
 
-    // Basic validation
+    // small validation
     if (!brand || !issue || !staff) {
       return json({ ok: false, error: "Missing brand/issue/staff" });
     }
@@ -42,7 +42,7 @@ function doPost(e) {
     // header map from row 1 (header to column index)
     const headerRow = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
     const headerMap = headerRow.reduce((m, h, i) => {
-      if (h) m[String(h).trim()] = i; // zero-based
+      if (h) m[String(h).trim()] = i;
       return m;
     }, {});
 
