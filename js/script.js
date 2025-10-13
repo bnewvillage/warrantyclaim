@@ -124,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   clearBtn.addEventListener("click", () => showModal(clearModal));
   confirmClear.addEventListener("click", () => {
     form.reset();
+    sessionStorage.clear();
     closeModal(clearModal);
   });
   cancelClear.addEventListener("click", () => closeModal(clearModal));
