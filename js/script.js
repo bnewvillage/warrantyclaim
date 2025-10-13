@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderBrandsDropdown(brands, parentDropdown, "beforeend");
   const brandSelect = document.getElementById("brand");
 
-  callWorkerAPI("/time").then(console.log);
   mountHolidayStrip();
 
   brandSelect.addEventListener("change", () =>
@@ -49,8 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const fd = new FormData(form);
       const data = Object.fromEntries(fd.entries());
 
-      const resp = await submitForm(data);
-      console.log("Form submission response:", resp);
+      await submitForm(data);
 
       // attach a timestamp from your worker
       try {
