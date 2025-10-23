@@ -78,6 +78,13 @@ export const brandForms = {
       <input type="text" name="serialNumber" required />
     </label>
   `
+  ,
+  "PLANET KNOX":`
+  <p class="note">
+      <strong>Invoice Copy is Required</strong>
+      Please email a copy to Blaine @ Oldtimer.
+    </p>
+  `
 };
 
 export default brandForms;

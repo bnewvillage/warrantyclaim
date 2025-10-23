@@ -1,0 +1,14 @@
+JOHN DOE {
+    Method: Email
+    Contacts: ad@freeway24.com , Alexander Dorn
+    Notes: Constant follow up, they do not respond quickly, or at all
+}
+
+MIDLAND {
+    Method: Email
+    Contacts: cs.europe@helinox.com
+}
+
+KLIM {
+    Method: Portal, dealers.klim.com
+}
