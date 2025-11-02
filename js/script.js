@@ -2,12 +2,14 @@ import {
   renderBrandsDropdown,
   renderBrandSpecificFields,
 } from "./BrandsDetails.mjs";
-import { callWorkerAPI, submitForm, mountHolidayStrip } from "./utils.mjs";
+import { callWorkerAPI, submitForm } from "./utils.mjs";
 import { brands } from "../public/brandObjectDetails/brands.mjs";
 import brandFields from "../public/brandObjectDetails/brandFields.mjs";
+import { customerNameField } from "./renderFields.mjs";
 
-const parentDropdown = document.querySelector("#brand");
+
 document.addEventListener("DOMContentLoaded", () => {
+  const parentDropdown = document.querySelector("#brand");
   const form = document.getElementById("claim-form");
   const fields = [...form.querySelectorAll("input, textarea, select")];
 
@@ -22,22 +24,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const brandMessageEl = document.getElementById("brandMessage");
   const continueSubmit = document.getElementById("continueSubmit");
   const cancelSubmit = document.getElementById("cancelSubmit");
+
+  const claimant = document.querySelectorAll('input[name="claimant"]');
+  let selectedClaimant = document.query //idk what to do for now
+  claimant.addEventListener("click", ()=>{
+    if 
+  })
   
 
   renderBrandsDropdown(brands, parentDropdown, "beforeend");
   const brandSelect = document.getElementById("brand");
 
-  mountHolidayStrip();
-
   fields.forEach((field) => {
-    const saved = sessionStorage.getItem(field.name || field.id);
+    const saved = localStorage.getItem(field.name || field.id);
     if (saved){
       field.value = saved;
     }
 
     field.addEventListener("input", ()=>{
       const key = field.name || field.id;
-      sessionStorage.setItem(key, field.value);
+      localStorage.setItem(key, field.value);
     });
   });
 
@@ -76,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
       closeModal(brandModal);
       alert("Claim submitted!");
-      sessionStorage.clear();
+      localStorage.clear();
       window.location.href =
         "https://docs.google.com/spreadsheets/d/1MDK0M72c_H3ix8ASGcsEvUnPhVOZdA5PEfz3HIKVX0k/edit?gid=0#gid=0";
     } catch (e) {
@@ -124,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   clearBtn.addEventListener("click", () => showModal(clearModal));
   confirmClear.addEventListener("click", () => {
     form.reset();
-    sessionStorage.clear();
+    localStorage.clear();
     closeModal(clearModal);
   });
   cancelClear.addEventListener("click", () => closeModal(clearModal));
